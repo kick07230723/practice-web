@@ -44,7 +44,7 @@ public class BoardController {
 		logger.info(board.toString());
 		service.regist(board);
 		rttr.addFlashAttribute("msg", "SUCCESS");
-		return "redirect:/board/listAll";
+		return "redirect:/board/list";
 	}
 
 	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
@@ -61,19 +61,20 @@ public class BoardController {
 	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
 		service.remove(bno);
 		rttr.addFlashAttribute("msg", "SUCCESS");
-		return "redirect:/board/listAll";
+		return "redirect:/board/list";
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
-	public void modify(@RequestParam("bno") int bno, Model model) throws Exception {
+	public void modify(@RequestParam("bno") int bno, Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
 		model.addAttribute("list", service.read(bno));
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modify(BoardVO board, RedirectAttributes rttr) throws Exception {
+	public String modify(BoardVO board, RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri) throws Exception {
+		logger.info("@@@   " + cri);
 		service.modify(board);
 		rttr.addFlashAttribute("msg", "SUCCESS");
-		return "redirect:/board/listAll";
+		return "redirect:/board/list?page=" + cri.getPage() + "&bno=" + board.getBno() + "&type=" + cri.getType();
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)

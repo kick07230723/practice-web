@@ -12,7 +12,7 @@
 	</select>
 
 	<update id="update" parameterType="com.nuritelecom.domain.BoardVO">
-		update tbl_board set title=#{title}, updatedate = now(), content=#{content} where bno = #{bno}
+		update tbl_board set title=#{title}, writer=#{writer}, updatedate = now(), content=#{content} where bno = #{bno}
 	</update>
 
 	<delete id="delete">

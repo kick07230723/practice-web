@@ -217,7 +217,7 @@
                 </a>
           </li>
           <li class="nav-item">
-                <a href="/jun/board/listAll" class="nav-link">
+                <a href="/jun/board/list" class="nav-link">
                   <i class="fa fa-table nav-icon"></i>
                   <p>전체 리스트 보기 </p>
                 </a>

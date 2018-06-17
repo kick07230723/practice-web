@@ -1,7 +1,6 @@
 package com.nuritelecom.domain;
 
 public class Criteria {
-	private int skip;
 	private int page;
 	private int pageNum;
 	private String keyword;

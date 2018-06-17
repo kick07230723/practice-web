@@ -91,8 +91,18 @@
               <!-- form start -->
               
 
-			<form class="form" action="/jun/board/listAll" method="get">
+           <form class="form2" action="/jun/board/read" method="get">
+				<input type="hidden" name="bno" value="${list.bno}">
+				<input type="hidden" name="page" value="${cri.page}" >
+				<input type="hidden" name="type" value="${cri.type}" >
+				<input type="hidden" name="keyword" value="${cri.keyword}" >
+	        </form>
+			
+			<form class="form" action="/jun/board/list" method="get">
 	          	<input type="hidden" name="bno" value="${list.bno}">
+	          	<input type="hidden" name="page" value="${cri.page}" >
+				<input type="hidden" name="type" value="${cri.type}" >
+				<input type="hidden" name="keyword" value="${cri.keyword}" >
                 <div class="card-body">
 	                  <div class="form-group">
 	                    <label for="exampleInputEmail1">제목</label>
@@ -169,7 +179,7 @@ $(document).ready(function(e) {
 	/* 	취소하고, 목록으로 */
 	$(".btn-danger").on("click", function(e){
 		e.preventDefault();
-		$(".form").submit();
+		$(".form2").submit();
 	});
 
 	
