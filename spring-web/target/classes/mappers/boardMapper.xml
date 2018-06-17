@@ -7,24 +7,36 @@
 		INSERT INTO tbl_board(title, content, writer) VALUES (#{title}, #{content}, #{writer});
 	</insert>
 
-	<select id="read" resultType="com.nuritelecom.domain.BoardVO">
+	<select id="read" parameterType="Integer" resultType="com.nuritelecom.domain.BoardVO">
 		select * from tbl_board where bno = #{bno}
 	</select>
 
-	<update id="update">
-		update tbl_board set title='한글제목1', content='한글 내용~' where bno = #{bno}
+	<update id="update" parameterType="com.nuritelecom.domain.BoardVO">
+		update tbl_board set title=#{title}, updatedate = now(), content=#{content} where bno = #{bno}
 	</update>
 
 	<delete id="delete">
 		delete from tbl_board where bno = #{bno}
 	</delete>
 	
-	<select id="listAll">
+	<select id="listAll" resultType="com.nuritelecom.domain.BoardVO">
 		<![CDATA[
 			select * from tbl_board where bno>0
-			order by bno desc, regdate desc
+			order by bno desc
 		]]>
-		
 	</select>
+	
+	<select id="listCriteria" resultType="BoardVO">
+		<![CDATA[
+			select * from tbl_board where bno>0 order by bno desc, regdate desc limit #{pageStart}, #{pageNum};
+		]]>
+	</select>
+	
+	<select id="getTotal" resultType="Integer">
+		select count(*) from tbl_board 
+	</select>
+	
+	
+	
 
 </mapper>

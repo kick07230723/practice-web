@@ -6,10 +6,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.nuritelecom.domain.BoardVO;
+import com.nuritelecom.domain.Criteria;
+import com.nuritelecom.domain.PageMaker;
 import com.nuritelecom.service.BoardService;
 
 /**
@@ -26,33 +31,57 @@ public class BoardController {
 
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public void indexGet(BoardVO board, Model model) throws Exception {
-		logger.info("hi!!!!");
+		logger.info("welcome!!!!");
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public void registerGet(BoardVO board, Model model) throws Exception {
 
-		logger.info("regi......get");
-	}
-
-	@RequestMapping(value = "/register2", method = RequestMethod.GET)
-	public void registerGet2(BoardVO board, Model model) throws Exception {
-		logger.info("regi2......get");
-	}
-
-	@RequestMapping(value = "/success", method = RequestMethod.GET)
-	public void success(BoardVO board, Model model) throws Exception {
-		logger.info("success......get");
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerPost(BoardVO board, Model model) throws Exception {
-
-		logger.info("regi......post");
+	public String registerPost(BoardVO board, RedirectAttributes rttr) throws Exception {
 		logger.info(board.toString());
 		service.regist(board);
-		model.addAttribute("result", "success");
-		return "board/success";
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		return "redirect:/board/listAll";
+	}
+
+	@RequestMapping(value = "/listAll", method = RequestMethod.GET)
+	public void listAll(Model model) throws Exception {
+		model.addAttribute("list", service.listAll());
+	}
+
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public void read(@RequestParam("bno") int bno, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+		model.addAttribute("list", service.read(bno));
+	}
+
+	@RequestMapping(value = "/remove", method = RequestMethod.POST)
+	public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
+		service.remove(bno);
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		return "redirect:/board/listAll";
+	}
+
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void modify(@RequestParam("bno") int bno, Model model) throws Exception {
+		model.addAttribute("list", service.read(bno));
+	}
+
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modify(BoardVO board, RedirectAttributes rttr) throws Exception {
+		service.modify(board);
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		return "redirect:/board/listAll";
+	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public void list(Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
+		model.addAttribute("list", service.listCriteria(cri));
+		PageMaker pageMaker = new PageMaker(cri, service.getTotal());
+		model.addAttribute("pageMaker", pageMaker);
+
 	}
 
 }

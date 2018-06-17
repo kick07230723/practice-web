@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.nuritelecom.domain.BoardVO;
+import com.nuritelecom.domain.Criteria;
 import com.nuritelecom.persistence.BoardDAO;
 
 @Service
@@ -38,6 +39,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> listAll() throws Exception {
 		return dao.listAll();
+	}
+
+	@Override
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+		return dao.listCriteria(cri);
+	}
+
+	@Override
+	public Integer getTotal() throws Exception {
+		return dao.getTotal();
 	}
 
 }

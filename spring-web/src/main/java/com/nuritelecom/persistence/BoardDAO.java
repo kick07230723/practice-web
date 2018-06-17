@@ -3,6 +3,7 @@ package com.nuritelecom.persistence;
 import java.util.List;
 
 import com.nuritelecom.domain.BoardVO;
+import com.nuritelecom.domain.Criteria;
 
 public interface BoardDAO {
 
@@ -15,5 +16,9 @@ public interface BoardDAO {
 	public void delete(Integer bno) throws Exception;
 
 	public List<BoardVO> listAll() throws Exception;
+
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
+
+	public Integer getTotal() throws Exception;
 
 }
