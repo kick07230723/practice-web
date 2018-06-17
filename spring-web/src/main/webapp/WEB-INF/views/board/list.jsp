@@ -17,7 +17,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data Tables</li>
+              <li class="breadcrumb-item active">  </li>
             </ol>
           </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Hover Data Table</h3>
+              <h3 class="card-title">  </h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -56,19 +56,14 @@
                 </c:forEach>
                 </tbody>
                                   
+              </table>
+              <br>
+              
                 <form class="form" method="get" action="board/list">
                 	<input class="bno" type="hidden" name="bno"> 
-					<input class="page" type="hidden" name="page"value="${pageMaker.current}"> 
-			    </form>
-              
-
-
-              </table>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
- 
-	            <div class="col-sm-6" >
+					<input class="page" type="hidden" name="page"value="${pageMaker.current}">
+				<div class="row">
+	            <div class="col-md-6" >
 		        	<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
 			        	<ul class="pagination"  >
 			        		<c:if test="${pageMaker.prev}"><li class="paginate_button page-item prev" id="example2_prev"> <a href="${pageMaker.start-1}" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link"><</a></li></c:if>
@@ -78,7 +73,30 @@
 			             	<c:if test="${pageMaker.next}"><li class="paginate_button page-item next" id="example2_next"> <a href="${pageMaker.end+1}" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">></a></li></c:if>
 						</ul>
 		         	</div>
-	          	</div>
+ 	          	</div>
+ 	          	
+              
+ 	          	<div class="col-md-6" >
+ 	          		<div class="input-group mb-3">
+						<select name="type" class="form-control">
+							<option value="t" ${cri.type eq 't'?'selected':''}>제목</option>
+							<option value="c" ${cri.type eq 'c'?'selected':''}>내용</option>
+							<option value="w" ${cri.type eq 'w'?'selected':''}>작성자</option>
+							<option value="tc" ${cri.type eq 'tc'?'selected':''}>내용+제목</option>
+	                    </select>
+	                  <!-- /btn-group -->
+	                  <input type="text" class="form-control" name="keyword" id="keywordInput" value="${cri.keyword}">
+	                  <span class="input-group-append">
+	                    <button type="button" class="btn btn-info btn-flat searchBtn">검색</button>
+	                  </span>
+	                </div>
+ 	          	</div>
+
+				</div>
+			    </form>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
             </div>
           
         </div>
@@ -127,7 +145,7 @@ $(document).ready(function(e) {
 		alert("작업이 처리되었습니다.");
 	}
 	
-/* 	페이지 클릭 */
+	/* 	페이지 클릭 */
 	$(".pagination a").on("click", function(e) {
 		e.preventDefault();
 		$(".page").val($(this).attr("href"));
@@ -141,6 +159,11 @@ $(document).ready(function(e) {
 		$(".form").attr("action","board/read").submit(); 
 	})
 	
+ 	$(".searchBtn").on("click", function(e) {
+		e.preventDefault();
+		$(".page").val("1");
+		$(".form").submit();
+	}) 
 	
 
 })

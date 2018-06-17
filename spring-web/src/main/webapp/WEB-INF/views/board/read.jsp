@@ -156,7 +156,7 @@
 $(document).ready(function(e) {
 	
 	
-	/* 	목록으로 */
+/* 	목록으로 */
 	$(".btn-outline-primary").on("click", function(e){
 		e.preventDefault();
 		$(".form").submit();

@@ -79,6 +79,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(Model model, @ModelAttribute("cri") Criteria cri) throws Exception {
+		logger.info("   @@@@@   " + cri);
 		model.addAttribute("list", service.listCriteria(cri));
 		PageMaker pageMaker = new PageMaker(cri, service.getTotal());
 		model.addAttribute("pageMaker", pageMaker);
