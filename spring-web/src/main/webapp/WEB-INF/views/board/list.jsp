@@ -118,20 +118,20 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="resources/plugins/jquery/jquery.min.js"></script>
+<script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
-<script src="resources/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="resources/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables/dataTables.bootstrap4.min.js"></script>
 <!-- SlimScroll -->
-<script src="resources/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="resources/plugins/fastclick/fastclick.js"></script>
+<script src="plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="resources/dist/js/adminlte.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="resources/dist/js/demo.js"></script>
+<script src="dist/js/demo.js"></script>
 <!-- page script -->
 
 
